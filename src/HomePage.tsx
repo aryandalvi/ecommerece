@@ -1,10 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
+import { Navigation, Autoplay } from "swiper/modules";
+import 'swiper/swiper-bundle.css'
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SideBar from "./SideBar";
 
 
 
@@ -29,7 +28,7 @@ type Meta = {
   qrCode: string;
 };
 
-type Item = {
+export type Item = {
   id: number;
   title: string;
   description: string;
@@ -91,12 +90,12 @@ const HomePage = () => {
         <div className="flex justify-center pt-20 py-10">
             <span className="border-2 rounded-2xl bg-Textcolor text-Background text-5xl p-2.5">Top Rated</span>
         </div>
-        <div className="h-100">
+        <div className="">
             <Swiper
           slidesPerView={4}
           spaceBetween={30}
           pagination={{ clickable: true }}
-          modules={[Pagination, Navigation,Autoplay]}
+          modules={[ Navigation,Autoplay]}
           className="w-[80%]"
           loop={true}
           autoplay={{
@@ -106,8 +105,8 @@ const HomePage = () => {
 
         >
           {highRated.map((item) => (
-            <SwiperSlide key={item.id}>
-                <Link to={`/products/${item.id}`} className=" h-90 bg-amber-50    m-1 card group shadow ease-in-out duration-400 transition hover:shadow-lg hover:-translate-y-2">
+            <SwiperSlide className=" py-2" key={item.id}>
+                <Link to={`/products/${item.id}`} className=" h-90 bg-amber-50 m-1 card group shadow ease-in-out duration-400 transition hover:shadow-lg hover:-translate-y-2">
               <div className="card shadow-md rounded-2xl h-96 border-2 bg-amber-100 border-Textcolor text-center p-5 flex flex-col justify-center">
                 <span className="absolute top-3 left-3 badge-warning text-2xl">{item.rating} ★</span>
                 <img

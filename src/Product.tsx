@@ -1,25 +1,33 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import type { Item } from "./HomePage";
 
 const Product=()=>{
     const { id } = useParams();
     console.log("Balls")
-    const [product,setProduct]=useState<any>(null);
+    const [product,setProduct]=useState<Item>();
+
     useEffect(() => {
-    axios.get(`https://dummyjson.com/products/${id}`).then((response) => setProduct(response.data))
-    }, [id]);
+    axios.get(`https://dummyjson.com/products/${id}`).then((response) => {
+      console.log("this",response.data)
+      console.log("test")
+      setProduct(response.data)}).catch((error) => {
+        console.error("Error LMAO: ", error);
+      });
+    },[id]);
     console.log(product)
     return(
         <>
+        {product ? (
         <div className="min-h-screen bg-Background text-Textcolor p-10 flex justify-center">
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="flex flex-col gap-4">
-          {/* <img
-            // src={product.thumbnail}
+           <img
+            src={product.thumbnail}
             alt={product.title}
             className="rounded-lg w-full h-96 object-contain border border-amber-200 bg-white p-4"
-          /> */}
+          /> 
           <div className="flex gap-3 justify-center">
             {product.images.map((img: string, i: number) => (
               <img
@@ -56,6 +64,7 @@ const Product=()=>{
         </div>
       </div>
     </div>
+    ):(<div>Loading...</div>)}
         </>
     )
 }
