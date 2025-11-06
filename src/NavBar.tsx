@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div className="relative">
-      <div className="fixed z-10 top-0 right-0 left-0 navbar overflow-visible bg-Background border-b-2 border-Textcolor h-24 shadow-sm p-0 ">
+      <div className="sticky z-10 top-0 right-0 left-0 navbar overflow-visible bg-Background border-b-2 border-Textcolor h-24 shadow-sm p-0 ">
         <div className="navbar-start ml-5">
           <div className="flex flex-col text-center">
             
