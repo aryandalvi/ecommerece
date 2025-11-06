@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@plugin "daisyui" {
+  base: false;
+}
+
+@theme{
+  --color-NeonGreen:#d7ff38;
+  --color-Background:#fffbf0;
+  --color-Textcolor:#403f2b;
+}
